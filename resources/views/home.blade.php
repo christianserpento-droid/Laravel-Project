@@ -96,7 +96,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}" class="btn btn-primary">Dashboard</a>
+                       <a href="{{ route('dashboard') }}" class="btn btn-primary">Dashboard</a>
                         <a href="{{ route('logout') }}" class="btn btn-outline-danger" 
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Logout
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ url('/home') }}" class="btn btn-primary btn-lg mt-3">Go to Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg mt-3">Go to Dashboard</a>
                     </div>
                 @else
                     <div class="student-info">

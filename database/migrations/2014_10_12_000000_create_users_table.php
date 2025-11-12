@@ -1,34 +1,41 @@
-<?php
+    <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+    use Illuminate\Database\Migrations\Migration;
+    use Illuminate\Database\Schema\Blueprint;
+    use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-   public function up()
-{
-    Schema::create('users', function (Blueprint $table) {
-        $table->id();
-        $table->string('student_id');
-        $table->string('name');
-        $table->string('email')->unique(); // Add this
-        $table->string('password'); // Add this
-        $table->integer('age');
-        $table->integer('average');
-        $table->string('department');
-        $table->string('program');
-        $table->timestamps(); // Also good to add this
-    });
-}
+    class CreateUsersTable extends Migration
+    {
+        /**
+         * Run the migrations.
+         *
+         * @return void
+         */
+        public function up()
+        {
+            Schema::create('users', function (Blueprint $table) {
+                $table->id();
+                $table->string('student_id')->nullable();
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->integer('age')->nullable();
+                $table->decimal('average', 5, 2)->nullable();
+                $table->string('department')->nullable();
+                $table->string('program')->nullable();
+                $table->rememberToken();
+                $table->timestamps();
+            });
+        }
 
-public function down()
-{
-    Schema::dropIfExists('users'); // Fix typo: was 'user'
-}
-}
+        /**
+         * Reverse the migrations.
+         *
+         * @return void
+         */
+        public function down()
+        {
+            Schema::dropIfExists('users');
+        }
+    }
